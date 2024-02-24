@@ -22,6 +22,7 @@ public class EnemyBulletSpawner : MonoBehaviour
     {
         while (true)
         {
+            // 총알을 생성하는 코드
             GameObject enemyBullet = 
                 Instantiate(bullet, bulletTransform.position, Quaternion.identity);
 
