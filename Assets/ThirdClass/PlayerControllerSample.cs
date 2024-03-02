@@ -16,7 +16,6 @@ namespace Sample
 
         PlayerState playerstate;
 
-        bool IsPlayerDeath = false;
 
         private void Awake()
         {
@@ -32,7 +31,7 @@ namespace Sample
 
         private void Update()
         {
-            if (IsPlayerDeath == true) return;
+            if (GameManager.Instance.IsPlayerDeath) return;
 
             SetPlayerState();
             playerMove.MovePlayer(this.transform);
@@ -68,8 +67,12 @@ namespace Sample
 
         public void PlayerDeath()
         {
+            if (GameManager.Instance.IsPlayerDeath) return;
+
+            GameManager.Instance.GameOver();
+
             animator?.SetTrigger("Death");
-            IsPlayerDeath = true;
+            GameManager.Instance.IsPlayerDeath = true;
         }
 
         public void PlayerMove()

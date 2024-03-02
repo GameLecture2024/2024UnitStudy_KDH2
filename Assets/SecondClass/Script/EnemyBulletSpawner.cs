@@ -22,6 +22,9 @@ public class EnemyBulletSpawner : MonoBehaviour
     {
         while (true)
         {
+            // GameManager isPlayerDeath 체크하는 if 함수
+            if (GameManager.Instance.IsPlayerDeath)
+                yield break;
             // 총알을 생성하는 코드
             GameObject enemyBullet = 
                 Instantiate(bullet, bulletTransform.position, Quaternion.identity);

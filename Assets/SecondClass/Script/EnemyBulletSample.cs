@@ -47,7 +47,7 @@ namespace Sample
                 // 플레이어의 체력을 떨어뜨리는 기능.
                 // 총알을 맞았을 때 바로 게임오버 기능.
 
-                collision.gameObject.GetComponent<PlayerController>().PlayerDeath();
+                collision.gameObject.GetComponent<PlayerControllerSample>().PlayerDeath();
 
                 OnDestroy();
             }

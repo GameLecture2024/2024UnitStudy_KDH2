@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using Sample;
 public class EnemyBullet : MonoBehaviour
 {
     // "생성될 때" 플레이어 위치를 감지해서 해당 방향으로 총알의 속도로 발사된다.
@@ -88,7 +88,7 @@ public class EnemyBullet : MonoBehaviour
             Debug.Log($"충돌한 게임 오브젝트의 이름 {collision.gameObject.name}");
             // 플레이어의 체력을 떨어뜨리는 기능.
             // 총알을 맞았을 때 바로 게임오버 기능.
-            collision.gameObject.GetComponent<PlayerController>().PlayerDeath();
+            collision.gameObject.GetComponent<PlayerControllerSample>().PlayerDeath();
 
             OnDestroy();
         }
