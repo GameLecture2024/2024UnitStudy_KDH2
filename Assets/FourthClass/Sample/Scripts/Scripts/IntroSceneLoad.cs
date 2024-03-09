@@ -7,6 +7,7 @@ public class IntroSceneLoad : MonoBehaviour
 {
     public void LoadGameScene()
     {
-        SceneManager.LoadScene("GameScene");
+        //SceneManager.LoadScene("GameScene");
+        Loading.LoadScene("GameScene");
     }
 }
