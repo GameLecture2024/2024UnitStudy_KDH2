@@ -7,12 +7,17 @@
       "ImageName" : "1001",
       "sentences" : ["안녕하세요", "제가 할말은..", "그렇습니다."]
     },
-
     {
       "sceneID" : 1000002,
       "name" : "장로",
       "ImageName" : "1002",
       "sentences" : ["하하하!", "허허허!", "내가 장로라네"]
+    },
+    {
+      "sceneID" : 1000003,
+      "name" : "환경",
+      "ImageName" : "Example",
+      "sentences" : ["새로운!", "이미지!", "호출"]
     }
   ]
 }

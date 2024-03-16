@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class SampleText 
 {
+    public int sceneID;
     // NPC 이름
     public string npcName;
     // NPC 아이콘 이미지의 이름
