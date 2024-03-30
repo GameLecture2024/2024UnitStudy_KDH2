@@ -15,6 +15,14 @@ public class HitChecker : MonoBehaviour
 
             enemy.TakeDamage();
         }
+
+        if (other.gameObject.CompareTag("Player")) 
+        {
+            PlayerHitController hitController = other.gameObject.GetComponent<PlayerHitController>();
+
+            hitController.TakeDamage();
+        }
+
     }
 
 }

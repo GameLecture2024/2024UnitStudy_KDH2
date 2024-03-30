@@ -14,10 +14,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/FirstClass_Move/Scenes/GameScene.unity
     guid: 53539f4bfc93296429875a547f7ebb13
-  - enabled: 1
-    path: Assets/FourthClass/Loading.unity
-    guid: 978cbaca8e831c24792b37de471f35b3
-  - enabled: 1
-    path: Assets/FifthClass/Scene/NewLoadingScene.unity
-    guid: 67493d711e260894e80332d54395b4a1
   m_configObjects: {}

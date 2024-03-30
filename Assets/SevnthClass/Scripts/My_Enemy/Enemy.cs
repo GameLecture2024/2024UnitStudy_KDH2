@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
     public float attackRange;               // 공격 범위 내에 타겟이 있으면 공격을 한다.
 
     [Header("몬스터의 공격 제어 변수")]
+    public GameObject hitCheckBox;
     public bool isEnemyAttackEnable;        // 공격 범위안에 플레이어가 들어오면 True, False 반환한다.
     public bool isAttack;                  // 공격을 실행 중일 때 True, 공격이 끝나면 false로 반환한다.
     public float attackCoolTime;            // 쿨타임이 있는 동안에는 적이 공격을 못한다.            
@@ -48,6 +49,7 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
         skinMeshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        currentHP = maxHP;
     }
 
     private void Update()
@@ -66,7 +68,7 @@ public class Enemy : MonoBehaviour
 
         // 탐색한 플레이어를 공격하는 기능
 
-        attackCheckTime += Time.deltaTime;    // attackCheckTime이 attackCoolTime쿨타임보다 커지면 공격하라
+        attackCheckTime = attackCheckTime + Time.deltaTime;    // attackCheckTime이 attackCoolTime쿨타임보다 커지면 공격하라
 
         if (attackRange >= Vector3.Distance(transform.position, target.position) && !isAttack)
         {
@@ -78,6 +80,7 @@ public class Enemy : MonoBehaviour
             if(attackCheckTime >= attackCoolTime)
             {
                 // 공격한다.
+                hitCheckBox.SetActive(true);
                 isAttack = true;
                 anim.CrossFade("Attack01", 0.2f);                  // 코드가 실행되면 공격하는 애니메이션이 실행되는대.
                 attackCheckTime = 0;
@@ -123,6 +126,7 @@ public class Enemy : MonoBehaviour
         ShakeCamera.Instance.OnShakeCamera(0.1f, 0.15f);
         skinMeshRenderer.material.color = Color.red;
         yield return new WaitForSeconds(hitBackTime);
+        skinMeshRenderer.material.color = Color.white;
 
         anim.SetBool(takeDamageAnimationName, false);
 
@@ -131,6 +135,7 @@ public class Enemy : MonoBehaviour
 
     private void OnDeath()
     {
+        GameStage.Instance.spawnEnemyCount--;
         isDeath = true;
         anim.SetTrigger(DeathAnimationName);
     }

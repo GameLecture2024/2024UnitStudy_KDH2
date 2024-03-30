@@ -10,7 +10,7 @@ namespace Sample
 
         public void StartButton()
         {
-            LoadingSceneController.LoadScene("SampleScene");
+            LoadingSceneController.LoadScene("GameScene");
         }
     } 
 }
