@@ -1645,6 +1645,14 @@ PrefabInstance:
       propertyPath: HitCheckBox
       value: 
       objectReference: {fileID: 129896279}
+    - target: {fileID: 7631414385165901623, guid: 8a369136beec5514283435fcb4e3f47a, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 7631414385165901623, guid: 8a369136beec5514283435fcb4e3f47a, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8128344383364044444, guid: 8a369136beec5514283435fcb4e3f47a, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.69

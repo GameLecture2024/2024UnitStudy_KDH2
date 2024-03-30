@@ -22,6 +22,12 @@ public class Enemy : MonoBehaviour
     public float findDistance;              // 타겟을 탐색 시작하는 최대 거리. 최대 거리 밖에 있는 타겟은 쫓지 않는다/
     public float attackRange;               // 공격 범위 내에 타겟이 있으면 공격을 한다.
 
+    [Header("몬스터의 공격 제어 변수")]
+    public bool isEnemyAttackEnable;        // 공격 범위안에 플레이어가 들어오면 True, False 반환한다.
+    public bool isAttack;                  // 공격을 실행 중일 때 True, 공격이 끝나면 false로 반환한다.
+    public float attackCoolTime;            // 쿨타임이 있는 동안에는 적이 공격을 못한다.            
+    private float attackCheckTime;          // 쿨타임을 제어하는 변수
+
     // 몬스터가 플레이어에게 공격받았을 때 데미지 입는 애니메이션 실행
     [Header("애니메이션 실행을 위해 필요한 변수")]
     private Animator anim;
@@ -50,15 +56,38 @@ public class Enemy : MonoBehaviour
 
         target = FindObjectOfType<PlayerControllerSample>().gameObject.transform;
 
-        if (findDistance >= Vector3.Distance(transform.position, target.position)) // 타겟과의 거리를 계산하는 식
+        if (findDistance >= Vector3.Distance(transform.position, target.position) && !isAttack && !isEnemyAttackEnable) // 타겟과의 거리를 계산하는 식
         {
             Debug.Log(Vector3.Distance(transform.position, target.position));
 
             agent.SetDestination(target.position);   // 플레이어를 쫓는 기능
-
-
-            // 적의 공격 기능 - 타겟이 공격 거리 범위 내에 있는가?
+         
         }
+
+        // 탐색한 플레이어를 공격하는 기능
+
+        attackCheckTime += Time.deltaTime;    // attackCheckTime이 attackCoolTime쿨타임보다 커지면 공격하라
+
+        if (attackRange >= Vector3.Distance(transform.position, target.position) && !isAttack)
+        {
+            // 현재 플레이어가 공격 범위 안에 있는지 체크 하는 변수 ( True / False ) -> Bool
+            isEnemyAttackEnable = true;
+            // 공격 쿨타임을 계산할 시간 변수 -> float
+
+            // 공격을 할지 말지 계산한다.
+            if(attackCheckTime >= attackCoolTime)
+            {
+                // 공격한다.
+                isAttack = true;
+                anim.CrossFade("Attack01", 0.2f);                  // 코드가 실행되면 공격하는 애니메이션이 실행되는대.
+                attackCheckTime = 0;
+            }
+        }
+        else
+        {
+            isEnemyAttackEnable = false;
+        }
+
     }
 
     private void OnDrawGizmos()
